@@ -1,15 +1,15 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import GlobalContext from '../components/GlobalContext'
 
-const initialData = {data: []}
+const initialValue = {country: []}
 
 const  FlagCountry = () => {
+ 
 
-    const {data} = useContext(GlobalContext)
-
+    
     return (
         <div>
-            
+           
         </div>
     )
 }
