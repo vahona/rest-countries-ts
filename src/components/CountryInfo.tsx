@@ -53,10 +53,10 @@ type Language = {
                {/* <div><span>Languages</span>: {country?.languages[2]?.name}</div> */}
            </article>
            <article>
-               <span>Border country</span>
-               <button></button>
-               <button></button>
-               <button></button>
+               <div>
+               <span>Border country</span>:
+                   <div>{country?.borders.map((border) => (<button>{border}</button>))}</div>
+               </div>
            </article>
         </div>
     )
