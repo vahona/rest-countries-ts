@@ -26,6 +26,35 @@ const SubContainer = styled.div`
  padding: 1rem
 `
 
+const ContainerInput = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-inline-start: 5%;
+  margin-inline-end: 5%;
+  margin-bottom: 10%;
+  margin-top: 10%;
+`
+
+const Span = styled.span`
+ font-weight: 700
+`
+
+const Input = styled.input`
+ border: none
+`
+
+const Select = styled.select`
+  border: none;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 1px 3px 3px 3px gainsboro;
+  border-radius: 10px
+
+
+`
+
 export const  FlagCountry = () => {
 
     const [name, setName] = useState("");
@@ -35,17 +64,17 @@ const ref = useRef<HTMLInputElement>(null)
 // const filteredCountry = countries.filter((country) => country.name?.toLowerCase().includes(ref?.current?.value.tolowerCase()))
 
 console.log("ref",ref?.current?.value);
-console.log(countries);
+// console.log(countries);
 
 const countryFlag = countries.map((country) => {
     return (
         <ListLink to={`/CountryInfo/${country.name}`}>
             <Image src={country.flag} alt=""/>
             <SubContainer >
-                <h1>{country.name}</h1>
-                <div><span>Population</span>: {country.population} </div>
-                <div><span>Region</span>: {country.region}</div>
-                <div><span>Capital</span>: {country.capital}</div>
+                <h2>{country.name}</h2>
+                <div><Span>Population</Span>: {country.population} </div>
+                <div><Span>Region</Span>: {country.region}</div>
+                <div><Span>Capital</Span>: {country.capital}</div>
             </SubContainer >
         </ListLink>
     )
@@ -53,17 +82,15 @@ const countryFlag = countries.map((country) => {
  
 )
 
-
-
     
     return (
         <div>
-            <div>
+            <ContainerInput>
             <div>
                <input type="text" name="contry" id="country" ref={ref} value={name} onChange={(e) => setName(e.target.value)} placeholder="search for a country"/>
             </div>
             <div>
-                <select name="country" id="country__choice">
+                <Select name="country" id="country__choice">
                     <option value="">Filter by region</option>
                     <option value="africa"> Africa </option>
                     <option value="america">America</option>
@@ -75,10 +102,10 @@ const countryFlag = countries.map((country) => {
                         <option value={countryname.region} >{countryname.region}</option>
                     )
                     )} */}
-                </select>
+                </Select>
                 
             </div>
-        </div>
+        </ContainerInput>
         <Container>
            {countryFlag}
         </Container>
