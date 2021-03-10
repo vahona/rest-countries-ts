@@ -30,6 +30,8 @@ const countryFlag = countries.map((country) => {
  
 )
 
+
+
     
     return (
         <div>
@@ -39,8 +41,13 @@ const countryFlag = countries.map((country) => {
             </div>
             <div>
                 <select name="country" id="country__choice">
-                    
+                    {countries.map((countryname) => (
+                        <option value={countryname.name} >{countryname.name}</option>
+                    )
+
+                    )}
                 </select>
+                
             </div>
         </div>
            {countryFlag}

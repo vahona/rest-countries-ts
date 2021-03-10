@@ -2,10 +2,26 @@ import React, {useContext} from 'react'
 import GlobalContext from '../components/GlobalContext'
 import { useParams, useHistory } from "react-router-dom";
 import styled from 'styled-components'
+import { type } from 'node:os';
 
 const Image = styled.img`
 width: 50%
 `
+
+type Language = {
+    iso639_1: string,
+    iso639_2: string,
+    name: string,
+    nativeName: string
+}
+ type Currencies = {
+    code: string,
+    name: string,
+    symbol: string
+
+ }
+
+ 
 
 
  function CountryInfo() {
@@ -33,8 +49,14 @@ width: 50%
            </article>
            <article>
                <div><span>Top Level Domain</span>: {country?.topLevelDomain}</div>
-               {/* <div><span>Currencie</span>: {country?.currencies[0]}</div>
-               <div><span>Languages</span>: {country?.languages[2]}</div> */}
+               {/* <div><span>Currencie</span>: {country?.currencies[0]}</div> */}
+               {/* <div><span>Languages</span>: {country?.languages[2]?.name}</div> */}
+           </article>
+           <article>
+               <span>Border country</span>
+               <button></button>
+               <button></button>
+               <button></button>
            </article>
         </div>
     )
