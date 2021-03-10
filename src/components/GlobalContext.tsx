@@ -1,127 +1,87 @@
-import React, {createContext} from 'react'
+import React, {createContext, useReducer, useEffect} from 'react'
 
 
 
 const URL = "https://restcountries.eu/rest/v2/all";
 
 
-type state = {
-
+type DataCountry = {
    
-        "name": string,
-        "topLevelDomain": [
-          string
-        ],
-        "alpha2Code": string,
-        "alpha3Code": string,
-        "callingCodes": [
-          string
-        ],
-        "capital": string,
-        "altSpellings": [
-          string,
-          string
-        ],
-        "region": string,
-        "subregion": string,
-        "population": number,
-        "latlng": [
-          number,
-          number
-        ],
-        "demonym": string,
-        "area": number,
-        "gini": number,
-        "timezones": [
-          string
-        ],
-        "borders": [
-          string,
-          string,
-          string,
-          string,
-          string,
-          string
-        ],
-        "nativeName": string,
-        "numericCode": string,
-        "currencies": [
-          {
-            "code": string,
-            "name": string,
-            "symbol": string
-          }
-        ],
-        "languages": [
-          {
-            "iso639_1": string,
-            "iso639_2": string,
-            "name": string,
-            "nativeName": string
-          },
-          {
-            "iso639_1": string,
-            "iso639_2": string,
-            "name": string,
-            "nativeName": string
-          },
-          {
-            "iso639_1": string,
-            "iso639_2": string,
-            "name": string,
-            "nativeName": string
-          }
-        ],
-        "translations": {
-          "de": string,
-          "es": string,
-          "fr": string,
-          "ja": string,
-          "it": string,
-          "br": string,
-          "pt": string,
-          "nl": string,
-          "hr": string,
-          "fa": string
-        },
-        "flag": string,
-        "regionalBlocs": [
-          {
-            "acronym": string,
-            "name": string,
-            "otherAcronyms": [
-              
-            ],
-            "otherNames": [
-              
-            ]
-          }
-        ],
-        "cioc": string
-      }
+        name?: string,
+        topLevelDomain: string[],
+        alpha2Code: string,
+        alpha3Code: string,
+        callingCodes: string[],
+        capital: string,
+        altSpellings: 
+          string[],
+        region: string,
+        subregion: string,
+        population: number,
+        latlng: number[],
+        demonym: string,
+        area: number,
+        gini: number,
+        timezones: string[]
+        borders: string[],
+        
+        nativeName: string,
+        numericCode: string,
+        currencies: string[],
+        languages: string[],
+        translations:string[],
+        flag: string,
+        regionalBlocs: string[],
+        cioc: string
+}
+
+type State = {
+  countries: DataCountry[]
+}
     
-const initialValue = {
-     country: []
+const initialValue: State = {
+     countries: []
 }
 
 
-const GlobalContext = createContext(initialValue)
+type Action = {
+  type: "COUNTRY_DATA",
+  payload: DataCountry[]
+}
+
+export const GlobalContext = createContext(initialValue)
+
+
+function reducer(state: State, action: Action) {
+  switch(action.type){
+    case "COUNTRY_DATA" :
+      return {countries: action.payload}
+      default:
+        return state
+  }
+ 
+}
 
 export const GlobalProvider: React.FC = ({children}) => {
-
+const [state, dispatch] = useReducer(reducer, initialValue)
     const fetchCountry = async () => {
         const countryData = await fetch(URL)
-        const result = countryData.json
-        return result
+        const result = await countryData.json();
+        console.log(result);
+        
+        dispatch({type: "COUNTRY_DATA", payload: result})
            
     }
 
     
-
+useEffect(() => {
   fetchCountry()
+}, [])
+
+ 
 
     return (
-        <GlobalContext.Provider value={initialValue}>
+        <GlobalContext.Provider value={{countries: state.countries}}>
             {children}
         </GlobalContext.Provider>
     )
