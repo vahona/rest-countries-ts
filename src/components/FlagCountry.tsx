@@ -6,7 +6,17 @@ import { Link } from "react-router-dom";
 
 
  const Image = styled.img`
-width: 50%
+width: 100%
+`
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 2rem
+`
+const ListLink = styled(Link)`
+ text-decoration: none;
+ color: black
 `
 
 export const  FlagCountry = () => {
@@ -16,7 +26,7 @@ console.log(countries);
 
 const countryFlag = countries.map((country) => {
     return (
-        <Link to={`/CountryInfo/${country.name}`}>
+        <ListLink to={`/CountryInfo/${country.name}`}>
             <Image src={country.flag} alt=""/>
             <div>
                 <h1>{country.name}</h1>
@@ -24,7 +34,7 @@ const countryFlag = countries.map((country) => {
                 <div><span>Region</span>: {country.region}</div>
                 <div><span>Capital</span>: {country.capital}</div>
             </div>
-        </Link>
+        </ListLink>
     )
 }
  
@@ -50,7 +60,9 @@ const countryFlag = countries.map((country) => {
                 
             </div>
         </div>
+        <Container>
            {countryFlag}
+        </Container>
         </div>
     )
 }
