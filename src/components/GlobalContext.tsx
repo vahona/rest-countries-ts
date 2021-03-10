@@ -73,7 +73,6 @@ const [state, dispatch] = useReducer(reducer, initialValue)
            
     }
 
-    
 useEffect(() => {
   fetchCountry()
 }, [])
