@@ -5,6 +5,20 @@ import React, {createContext, useReducer, useEffect} from 'react'
 const URL = "https://restcountries.eu/rest/v2/all";
 
 
+type languages = {
+  iso639_1: string
+  iso639_2: string
+  name: string
+  nativeName: string
+}
+
+type currencies = {
+  code: string,
+  name: string,
+  symbol: string
+
+}
+
 type DataCountry = {
    
         name?: string,
@@ -27,26 +41,37 @@ type DataCountry = {
         
         nativeName: string,
         numericCode: string,
-        currencies: string[],
-        languages: string[],
+        currencies: currencies[],
+        languages: languages[],
         translations:string[],
         flag: string,
         regionalBlocs: string[],
         cioc: string
 }
 
+
+
+
 type State = {
-  countries: DataCountry[]
+  countries: DataCountry[],
+ 
+  
 }
     
 const initialValue: State = {
-     countries: []
+     countries: [],
+  
+
+
+
 }
+
 
 
 type Action = {
   type: "COUNTRY_DATA",
-  payload: DataCountry[]
+  payload: DataCountry[],
+  
 }
 
 export const GlobalContext = createContext(initialValue)
@@ -77,6 +102,15 @@ useEffect(() => {
   fetchCountry()
 }, [])
 
+
+const FilterData = () => {
+
+}
+
+// const ref = useRef<HTMLInputElement>(null)
+// // const filteredCountry = countries.filter((country) => country.name?.toLowerCase().includes(ref?.current?.value.tolowerCase()))
+
+// console.log("ref",ref?.current?.value);
  
 
     return (

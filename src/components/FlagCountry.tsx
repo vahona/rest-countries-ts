@@ -12,8 +12,10 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-gap: 2rem
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 2rem;
+  margin-inline-start: 10%;
+  margin-inline-end: 10%
 `
 const ListLink = styled(Link)`
  text-decoration: none;
@@ -60,10 +62,7 @@ export const  FlagCountry = () => {
     const [name, setName] = useState("");
  
 const {countries} = useContext(GlobalContext);
-const ref = useRef<HTMLInputElement>(null)
-// const filteredCountry = countries.filter((country) => country.name?.toLowerCase().includes(ref?.current?.value.tolowerCase()))
 
-console.log("ref",ref?.current?.value);
 // console.log(countries);
 
 const countryFlag = countries.map((country) => {
@@ -87,7 +86,7 @@ const countryFlag = countries.map((country) => {
         <div>
             <ContainerInput>
             <div>
-               <input type="text" name="contry" id="country" ref={ref} value={name} onChange={(e) => setName(e.target.value)} placeholder="search for a country"/>
+               <input type="text" name="contry" id="country"  onChange={(e) => setName(e.target.value)} placeholder="search for a country"/>
             </div>
             <div>
                 <Select name="country" id="country__choice">

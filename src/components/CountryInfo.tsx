@@ -7,19 +7,11 @@ import { type } from 'node:os';
 const Image = styled.img`
 width: 50%
 `
+const Span2 = styled.span`
+  font-weight: 700
+`
 
-type Language = {
-    iso639_1: string,
-    iso639_2: string,
-    name: string,
-    nativeName: string
-}
- type Currencies = {
-    code: string,
-    name: string,
-    symbol: string
 
- }
 
  
 
@@ -41,20 +33,24 @@ type Language = {
         <div>
             <Image src={country?.flag} alt=""/>
             <article>
-                    <div> <span> Native Name </span>: {country?.nativeName} </div>
-                    <div> <span>Population</span>: {country?.population} </div>
-                    <div><span>Region</span>: {country?.region} </div>
-                    <div><span>Sub Region</span>: {country?.subregion} </div>
-                    <div><span>Capital</span>: {country?.capital}</div>
+                    <div> <Span2> Native Name </Span2>: {country?.nativeName} </div>
+                    <div> <Span2>Population</Span2>: {country?.population} </div>
+                    <div><Span2>Region</Span2>: {country?.region} </div>
+                    <div><Span2>Sub Region</Span2>: {country?.subregion} </div>
+                    <div><Span2>Capital</Span2>: {country?.capital}</div>
            </article>
            <article>
-               <div><span>Top Level Domain</span>: {country?.topLevelDomain}</div>
-               {/* <div><span>Currencie</span>: {country?.currencies[0]}</div> */}
-               {/* <div><span>Languages</span>: {country?.languages[2]?.name}</div> */}
+               <div><Span2>Top Level Domain</Span2>: {country?.topLevelDomain}</div>
+               <div><Span2>Currencie</Span2>: {country?.currencies.map((cur) => (
+                       <div>{cur.name}</div> 
+               ))}</div>
+               <div><Span2>Languages</Span2>: {country?.languages.map((lang) => (
+                  <div>{lang.name}</div>
+               ))}</div>
            </article>
            <article>
                <div>
-               <span>Border country</span>:
+               <Span2>Border country</Span2>:
                    <div>{country?.borders.map((border) => (<button>{border}</button>))}</div>
                </div>
            </article>
