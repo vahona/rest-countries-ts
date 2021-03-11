@@ -1,4 +1,4 @@
-import React, {createContext, useReducer, useEffect} from 'react'
+import React, {createContext, useReducer, useEffect, useRef} from 'react'
 
 
 
@@ -103,14 +103,14 @@ useEffect(() => {
 }, [])
 
 
-const FilterData = () => {
-
+type InputValue = {
+  value: string
 }
 
-// const ref = useRef<HTMLInputElement>(null)
-// // const filteredCountry = countries.filter((country) => country.name?.toLowerCase().includes(ref?.current?.value.tolowerCase()))
 
-// console.log("ref",ref?.current?.value);
+type State2 = {
+  
+}
  
 
     return (

@@ -11,10 +11,26 @@ const Span2 = styled.span`
   font-weight: 700
 `
 
+const Span3 = styled.span`
+  margin-right: 0.5rem
+`
 
+const Button = styled.button`
+  background: white;
+  border: none;
+  margin: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 5px;
+  font-size: 24px;
+  box-shadow: 1px 3px 3px 3px gainsboro;
+`
 
- 
-
+const BigContainer = styled.div`
+   margin-inline-start: 2.5rem
+`
 
  function CountryInfo() {
 
@@ -28,10 +44,16 @@ const Span2 = styled.span`
   
 
   const country = countries.find(country => country.name === name)
+  const history = useHistory()
 
     return (
-        <div>
+          <div>
+            <div>
+            <Button onClick={() => history.goBack()}> <Span3> ← </Span3> Back</Button>
+            </div>
+            <BigContainer>
             <Image src={country?.flag} alt=""/>
+            <h2> {country?.name} </h2>
             <article>
                     <div> <Span2> Native Name </Span2>: {country?.nativeName} </div>
                     <div> <Span2>Population</Span2>: {country?.population} </div>
@@ -54,7 +76,8 @@ const Span2 = styled.span`
                    <div>{country?.borders.map((border) => (<button>{border}</button>))}</div>
                </div>
            </article>
-        </div>
+           </BigContainer>
+        </div >
     )
 }
 
