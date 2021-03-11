@@ -67,13 +67,13 @@ const BigContainer = styled.div`
                        <div>{cur.name}</div> 
                ))}</div>
                <div><Span2>Languages</Span2>: {country?.languages.map((lang) => (
-                  <div>{lang.name}</div>
+                  <div id={lang.name}>{lang.name}</div>
                ))}</div>
            </article>
            <article>
                <div>
                <Span2>Border country</Span2>:
-                   <div>{country?.borders.map((border) => (<button>{border}</button>))}</div>
+                   <div >{country?.borders.map((border) => (<button>{border}</button>))}</div>
                </div>
            </article>
            </BigContainer>

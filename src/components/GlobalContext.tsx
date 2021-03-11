@@ -60,9 +60,6 @@ type State = {
     
 const initialValue: State = {
      countries: [],
-  
-
-
 
 }
 

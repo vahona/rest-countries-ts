@@ -67,7 +67,7 @@ const {countries} = useContext(GlobalContext);
 
 const countryFlag = countries.map((country) => {
     return (
-        <ListLink to={`/CountryInfo/${country.name}`}>
+        <ListLink to={`/CountryInfo/${country.name}`} >
             <Image src={country.flag} alt=""/>
             <SubContainer >
                 <h2>{country.name}</h2>
